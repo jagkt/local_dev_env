@@ -2,7 +2,7 @@ version: '3'
 services:
   py_app:
     build: ./py_app
-    command: uvicorn main:app --reload
+    command: uvicorn main:app  --host:0.0.0.0 --reload
     # environment:
     #   - PORT=8000
     #   - FastAPI_ENV=development
