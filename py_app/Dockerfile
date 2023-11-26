@@ -12,5 +12,5 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 # copy project
 COPY . /pyApp
 # start application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "/pyApp.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
