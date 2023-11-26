@@ -2,15 +2,15 @@ version: '3'
 services:
   py_app:
     build: ./py_app/
-    command: sh -c "uvicorn main:app --reload"
-    environment:
-      - PORT=8000
-      - FastAPI_ENV=development
+    command: uvicorn main:app --reload
+    # environment:
+    #   - PORT=8000
+    #   - FastAPI_ENV=development
     ports:
       - '8000:8000'
-    working_dir: /pyApp
+    # working_dir: /pyApp
     volumes:
-      - ./py_app:/pyApp:cached # <--- This will map ./py1 to /root/py1 inside the container.
+      - ./py_app:/pyApp #:cached # <--- This will map ./py1 to /root/py1 inside the container.
 
   node_app:
     image: node:12.3-alpine

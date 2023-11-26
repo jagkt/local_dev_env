@@ -12,5 +12,5 @@ RUN pip install --upgrade -r requirements.txt
 # copy project
 COPY . /pyApp
 # start application
-CMD ["uvicorn", "main:app", "--host", "--reload"]
+# CMD ["uvicorn", "main:app", "--host", "--reload"]
 
