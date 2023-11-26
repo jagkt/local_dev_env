@@ -1,17 +1,16 @@
-FROM python:11-alpine
+# # pull the official docker image
+FROM python:3.11.1-slim
+# # set work directory
+WORKDIR /pyApp
+# # set env variables
+ENV PYTHONDONTWRITEBYTECODE 1 \ 
+    PYTHONUNBUFFERED 1 \
+    PIP_NO_CACHE_DIR=1
+# # install dependencies
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir --upgrade -r requirements.txt 
+# copy project
+COPY . /pyApp
+# start application
+CMD ["uvicorn", "py_app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
-# set up location of code
-WORKDIR /opt/sde/src/loader
-
-# lets us import from folders inside /src/loader directly
-ENV PYTHONPATH=/opt/sde
-
-# install python requirements
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-
-# COPY our code folder to docker
-COPY ../.. /opt/sde
-
-# keep our docker container running
-CMD ["tail", "-f", "/dev/null"]
