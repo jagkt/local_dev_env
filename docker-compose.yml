@@ -14,7 +14,7 @@ services:
 
   node_app:
     image: node:12.3-alpine
-    command: npm install && npm start
+    command: npm install && npm install protobufjs && npm start
     environment:
       - NODE_ENV=development
       - PORT=5000
