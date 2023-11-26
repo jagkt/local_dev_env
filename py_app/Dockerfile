@@ -8,9 +8,9 @@ ENV PYTHONDONTWRITEBYTECODE 1 \
     PIP_NO_CACHE_DIR=1
 # # install dependencies
 COPY ./requirements.txt .
-RUN pip install --no-cache-dir --upgrade -r requirements.txt 
+RUN pip install --upgrade -r requirements.txt 
 # copy project
 COPY . /pyApp
 # start application
-CMD ["uvicorn", "/pyApp.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "--reload"]
 
