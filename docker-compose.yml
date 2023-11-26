@@ -1,7 +1,7 @@
 version: '3'
 services:
   py_app:
-    build: ./py_app/
+    build: ./py_app
     command: uvicorn main:app --reload
     # environment:
     #   - PORT=8000
