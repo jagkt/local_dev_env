@@ -1,0 +1,17 @@
+{
+    "name": "node_app",
+    "version": "1.0.0",
+    "description": "A sample nodejs server",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "author": "admin@admin.com",
+    "license": "MIT",
+    "engines": {
+      "node": ">=10.1.0"
+    },
+    "dependencies": {
+      "express": "^4.16.4"
+    }
+  }

@@ -1,3 +1,4 @@
-var os = require("os");
-var hostname = os.hostname();
-console.log("hello from " + hostname);
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello from node_app"));

@@ -14,7 +14,7 @@ services:
 
   node_app:
     image: node:12.3-alpine
-    command: sh -c "node index.js"
+    command: npm install && npm start
     environment:
       - NODE_ENV=development
       - PORT=5000
