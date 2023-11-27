@@ -2,6 +2,7 @@ version: '3'
 services:
   py_app:
     build: ./py
+    container_name: py
     command: uvicorn main:app --host 0.0.0.0 --reload
     environment:
       - FastAPI_ENV=development
@@ -13,13 +14,14 @@ services:
 
   node_app:
     image: node:12.3-alpine
+    container_name: node
     user: "node"
     environment:
       - NODE_ENV=development
       - PORT=5000
-    tty: true
-    restart: always
-    command: sh -c "npm install && npm start && tail -f /dev/null" 
+    #tty: true
+    #restart: always
+    command: sh -c "npm install && npm start" # && tail -f /dev/null" 
     ports:
       - '5000:5000'
     working_dir: /home/node/app
