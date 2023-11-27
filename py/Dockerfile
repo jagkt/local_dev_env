@@ -1,7 +1,7 @@
 # # pull the official docker image
 FROM python:3.11.1-slim
 # # set work directory
-WORKDIR /pyApp
+WORKDIR /home/py/app
 # # set env variables
 ENV PYTHONDONTWRITEBYTECODE 1 \ 
     PYTHONUNBUFFERED 1 \
@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE 1 \
 COPY ./requirements.txt .
 RUN pip install --upgrade -r requirements.txt 
 # copy project
-COPY . /pyApp
+COPY . /home/py/app
 # start application
 # CMD ["uvicorn", "main:app", "--host", "--reload"]
 
