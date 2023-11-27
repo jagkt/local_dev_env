@@ -15,8 +15,9 @@ services:
     user: "node"
     environment:
       - NODE_ENV=development
-    tty: true
-    command: sh -c "npm install && npm start" && /bin/bash #npm install && npm install protobufjs && npm start
+    #tty: true
+    restart: always
+    command: bash -c "npm install -g nodemon && npm dev" #npm install && npm install protobufjs && npm start
     ports:
       - '5000:5000'
     working_dir: /home/node/app
