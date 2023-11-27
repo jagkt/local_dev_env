@@ -5,6 +5,7 @@ services:
     command: uvicorn main:app  --host 0.0.0.0 --reload
     environment:
       - FastAPI_ENV=development
+      - PORT=8000
     ports:
       - '8000:8000'
     volumes:
@@ -15,7 +16,8 @@ services:
     user: "node"
     environment:
       - NODE_ENV=development
-    #tty: true
+      - PORT=5000
+    tty: true
     restart: always
     command: sh -c "npm install && npm start && tail -f /dev/null" #npm install && npm install protobufjs && npm start
     ports:
