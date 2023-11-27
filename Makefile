@@ -4,8 +4,8 @@ up:
 down:
 	docker compose down 
 
-sh_py:
+py:
 	docker exec -ti py bash
 
-sh_node:
-	docker exec -ti node bash
+node:
+	docker exec -ti node sh
