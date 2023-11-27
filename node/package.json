@@ -4,8 +4,7 @@
     "description": "A sample nodejs application",
     "main": "index.js",
     "scripts": {
-      "start": "node index.js",
-      "dev": "nodemon index.js"
+      "start": "node index.js"
     },
     "author": "admin@admin.com",
     "license": "MIT",

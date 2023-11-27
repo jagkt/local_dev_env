@@ -2,14 +2,14 @@ version: '3'
 services:
   py_app:
     build: ./py
-    command: uvicorn main:app  --host 0.0.0.0 --reload
+    command: uvicorn main:app --host 0.0.0.0 --reload
     environment:
       - FastAPI_ENV=development
       - PORT=8000
     ports:
       - '8000:8000'
     volumes:
-      - ./py:/home/py/app #:cached # <--- This will map ./py1 to /root/py1 inside the container.
+      - ./py:/home/py/app 
 
   node_app:
     image: node:12.3-alpine
@@ -19,9 +19,9 @@ services:
       - PORT=5000
     tty: true
     restart: always
-    command: sh -c "npm install && npm start && tail -f /dev/null" #npm install && npm install protobufjs && npm start
+    command: sh -c "npm install && npm start && tail -f /dev/null" 
     ports:
       - '5000:5000'
     working_dir: /home/node/app
     volumes:
-      - ./node:/home/node/app:cached # <--- This will map ./node_app to /root/node_app inside the container.
+      - ./node:/home/node/app:cached
