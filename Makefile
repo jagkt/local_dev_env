@@ -9,3 +9,9 @@ py:
 
 node:
 	docker exec -ti node sh
+
+py_log:
+	docker logs -ft --details py
+
+node_log:
+	docker logs -ft --details node
