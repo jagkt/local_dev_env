@@ -4,6 +4,9 @@ up:
 down:
 	docker compose down 
 
+run_con:
+	docker container ls
+
 py:
 	docker exec -ti py bash
 
