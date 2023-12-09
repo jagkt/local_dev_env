@@ -37,4 +37,4 @@ services:
     volumes:
       - /home/$(whoami)/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - $(which docker):/usr/bin/docker
+      - /usr/bin/docker:/usr/bin/docker
