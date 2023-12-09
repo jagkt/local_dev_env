@@ -25,3 +25,16 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./node:/home/node/app:cached
+  
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /home/$(whoami)/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $(which docker):/usr/bin/docker
