@@ -30,6 +30,10 @@ services:
     image: jenkins/jenkins:lts
     privileged: true
     user: root
+    command: sh -c "groupadd -g 997 docker && \
+             gpasswd -a jenkins docker  && \
+             curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+             chmod +x /usr/local/bin/docker-compose"
     ports:
       - 8080:8080
       - 50000:50000
@@ -38,4 +42,4 @@ services:
       - /home/$(whoami)/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
-      - /usr/bin/docker-compose:/usr/bin/docker-compose
+      #- /usr/bin/docker-compose:/usr/bin/docker-compose
