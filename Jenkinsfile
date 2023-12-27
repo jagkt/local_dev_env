@@ -18,6 +18,7 @@ pipeline {
         stage('Docker Compose Build image') {
             steps {
                     // sh "docker-compose build"
+                    sh "docker-compose down py_app node_app"
                     sh "docker-compose up -d py_app node_app"
                     // dockerImage = docker.build dockerimagename + ":$BUILD_NUMBER"
             }
