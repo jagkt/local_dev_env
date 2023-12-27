@@ -35,6 +35,8 @@ services:
       - 50000:50000
     container_name: jenkins
     volumes:
-      - /home/$(whoami)/jenkins:/var/jenkins_home
+      - /home/jagkush/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
+
+#$(whoami)
