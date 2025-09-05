@@ -1,0 +1,39 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker-compose build'
+      }
+    }
+
+    stage('Test Python') {
+      steps {
+        sh 'docker-compose run --rm python-service pytest'
+      }
+    }
+
+    stage('Test Node') {
+      steps {
+        sh 'docker-compose run --rm node-service npm test'
+      }
+    }
+
+    stage('Integration') {
+      steps {
+        sh 'docker-compose up -d db redis'
+        sh 'docker-compose up -d python-service node-service'
+        sh 'sleep 20'
+        sh 'curl -f http://localhost:8000/health'
+        sh 'curl -f http://localhost:5000/health'
+      }
+    }
+
+    stage('Cleanup') {
+      steps {
+        sh 'docker-compose down'
+      }
+    }
+  }
+}
