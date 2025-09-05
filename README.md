@@ -28,6 +28,21 @@ A streamlined **local development environment** for Node.js and Python services 
 git clone https://github.com/jagkt/local_dev_env.git
 cd local_dev_env
 
-## Bringing up both services
-```bash
+
+## Bringing up both services:
 make up
+
+## Check services in your browser:
+
+- **Python (FastAPI):** http://localhost:8000
+- **Node.js (Express):** http://localhost:5000
+
+## Tail logs:
+make py_log
+make node_log
+
+## Bring down all services:
+make down
+
+### Alternatively, without make, you can run:
+docker-compose up -d
