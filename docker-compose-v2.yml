@@ -1,0 +1,90 @@
+version: '3.9'
+services:
+  py_app:
+    build: ./py
+    container_name: py
+    command: uvicorn main:app --host 0.0.0.0 --reload
+    environment:
+      - FastAPI_ENV=development
+      - PORT=8000
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./py:/home/py/app
+    depends_on:
+      - db
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  node_app:
+    image: node:12.3-alpine
+    container_name: node
+    user: "node"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+    command: sh -c "npm install && npm start"
+    ports:
+      - '5000:5000'
+    working_dir: /home/node/app
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./node:/home/node/app:cached
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /home/jagkush/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+  
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
+
+#$(whoami)

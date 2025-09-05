@@ -18,3 +18,6 @@ py_log:
 
 node_log:
 	docker logs -ft --details node
+
+pytest:
+	docker-compose run python-service pytest
