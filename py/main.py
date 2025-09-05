@@ -9,3 +9,8 @@ async def home():
 @app.get("/hello/{user}")
 async def greetings(user):
     return {"Hello": user}
+
+##for v2
+@app.get("/health")
+def health():
+    return {"status": "ok"}
