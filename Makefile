@@ -21,3 +21,6 @@ node_log:
 
 pytest:
 	docker-compose run python-service pytest
+
+nodetest:
+	docker-compose run node-service npm test
