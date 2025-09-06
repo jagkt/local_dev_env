@@ -20,7 +20,7 @@ node_log:
 	docker logs -ft --details node
 
 pytest:
-	docker-compose run python-service pytest
+	docker compose run python-service pytest
 
 nodetest:
-	docker-compose run node-service npm test
+	docker compose run node-service npm test
