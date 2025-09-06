@@ -1,7 +1,7 @@
 # local_dev_env
 
 A streamlined **local development environment** for Node.js and Python services using Docker, Docker Compose, and Makefile commands for easy setup and development.
-
+I wrote an article to illustrate this process at dev.to, click [here](https://dev.to/jagkush/docker-setup-a-local-js-and-python-development-environment-2ffc) to read.
 ---
 
 ##  Features
