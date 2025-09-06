@@ -14,21 +14,21 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build services
-        run: docker-compose build
+        run: docker compose build
 
       - name: Test Python
-        run: docker-compose run --rm python-service pytest
+        run: docker compose run --rm python-service pytest
 
       - name: Test Node
-        run: docker-compose run --rm node-service npm test
+        run: docker compose run --rm node-service npm test
 
       - name: Integration checks
         run: |
-          docker-compose up -d db redis
-          docker-compose up -d python-service node-service
+          docker compose up -d db redis
+          docker compose up -d python-service node-service
           sleep 20
           curl -f http://localhost:8000/health
           curl -f http://localhost:5000/health
 
       - name: Cleanup
-        run: docker-compose down
+        run: docker compose down
